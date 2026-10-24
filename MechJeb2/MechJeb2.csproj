@@ -104,7 +104,7 @@
 
     <Target Name="MechJebCopyBuild" AfterTargets="Build">
         <Exec Condition=" '$(OS)' == 'Windows_NT' "
-              Command="call &quot;$(ProjectDir)copy_build.bat&quot; &quot;$(TargetPath)&quot; &quot;$(TargetDir)&quot; &quot;$(TargetName)&quot; &quot;$(ProjectDir)&quot;"/>
+              Command="set &quot;KSPDIR=$(KspDir)&quot; &amp;&amp; call &quot;$(ProjectDir)copy_build.bat&quot; &quot;$(TargetPath)&quot; &quot;$(TargetDir)&quot; &quot;$(TargetName)&quot; &quot;$(ProjectDir)&quot;"/>
         <Exec Condition=" '$(OS)' != 'Windows_NT' "
               Command="'$(ProjectDir)/copy_build.sh' '$(TargetPath)' '$(TargetDir)' '$(TargetName)' '$(ProjectDir)' '$(KspDir)'"/>
     </Target>

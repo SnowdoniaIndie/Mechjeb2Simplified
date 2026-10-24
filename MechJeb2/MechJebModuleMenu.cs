@@ -247,7 +247,10 @@ namespace MuMech
             if (!ApplicationLauncher.Ready)
                 return;
 
-            if (useAppLauncher && mjButton == null)
+            // SimpleAutopilot: also hide MechJeb's own button unless enabled in Difficulty Settings.
+            bool showButton = useAppLauncher && SimpleAutopilot.SimpleAutopilotParams.MechJebMenusEnabled;
+
+            if (showButton && mjButton == null)
             {
                 Texture2D mjButtonTexture = GameDatabase.Instance.GetTexture("MechJeb2/Icons/MJ2", false);
 
@@ -255,7 +258,7 @@ namespace MuMech
                     ApplicationLauncher.AppScenes.ALWAYS, mjButtonTexture);
             }
 
-            if (!useAppLauncher && mjButton != null)
+            if (!showButton && mjButton != null)
             {
                 ApplicationLauncher.Instance.RemoveModApplication(mjButton);
                 mjButton = null;
@@ -517,6 +520,11 @@ namespace MuMech
 
         public override void DrawGUI(bool inEditor)
         {
+            // SimpleAutopilot: hide MechJeb's on-screen menu (the "MechJeb" bar + its window) unless
+            // enabled in Difficulty Settings. Pairs with the app-launcher gate in SetupAppLauncher.
+            if (!SimpleAutopilot.SimpleAutopilotParams.MechJebMenusEnabled)
+                return;
+
             switch (windowStat)
             {
                 case WindowStat.OPENING:

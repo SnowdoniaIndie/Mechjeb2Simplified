@@ -73,7 +73,7 @@ namespace MuMech
 
         [ToggleInfoItem("#MechJeb_HoverslamMapLandingPrediction", InfoItem.Category.Hoverslam, tooltip = "#MechJeb_HoverslamMapLandingPrediction_tooltip"), Persistent(pass = (int)(Pass.GLOBAL | Pass.TYPE))]
          //Map landing prediction
-        public bool MapLandingPrediction = true;
+        public bool MapLandingPrediction = false; // SimpleAutopilot: default off (was true) - hides the magenta map-landing marker
 
         [EditableInfoItem("#MechJeb_HoverslamSimRecalcInterval", InfoItem.Category.Hoverslam, width = 50, rightLabel = "s", expandWidth = true, tooltip = "#MechJeb_HoverslamSimRecalcInterval_tooltip"), Persistent(pass = (int)(Pass.GLOBAL | Pass.TYPE))]
          //Simulation recalc interval
